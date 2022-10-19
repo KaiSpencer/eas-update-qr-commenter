@@ -50,13 +50,15 @@ function run() {
             const androidBuildID = core.getInput('android-build-id', { required: true });
             const iosQR = expoQRBaseURL + iosBuildID;
             const androidQR = expoQRBaseURL + androidBuildID;
-            const defaultMessage = `${commentTitle}\n` +
-                `\n|iOS|Android|` +
-                `\n|:-:|:-:|` +
-                `\n|![iOS Build QR](${iosQR})|![Android Build QR](${androidQR})|`;
             const token = core.getInput('repo-token', { required: true });
             const octokit = github.getOctokit(token);
             const { repo, issue } = github.context;
+            const defaultMessage = `# EAS Update Success\n\n\n\n` +
+                `${JSON.stringify(github.context)}\n\n\n` +
+                `${commentTitle}\n` +
+                `\n|iOS|Android|` +
+                `\n|:-:|:-:|` +
+                `\n|![iOS Build QR](${iosQR})|![Android Build QR](${androidQR})|`;
             yield octokit.rest.issues.createComment({
                 owner: repo.owner,
                 repo: repo.repo,

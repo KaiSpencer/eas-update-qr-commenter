@@ -14,15 +14,17 @@ async function run(): Promise<void> {
     const iosQR = expoQRBaseURL + iosBuildID
     const androidQR = expoQRBaseURL + androidBuildID
 
+    const token = core.getInput('repo-token', {required: true})
+    const octokit = github.getOctokit(token)
+    const {repo, issue} = github.context
+
     const defaultMessage =
+      `# EAS Update Success\n\n\n\n` +
+      `${JSON.stringify(github.context)}\n\n\n` +
       `${commentTitle}\n` +
       `\n|iOS|Android|` +
       `\n|:-:|:-:|` +
       `\n|![iOS Build QR](${iosQR})|![Android Build QR](${androidQR})|`
-
-    const token = core.getInput('repo-token', {required: true})
-    const octokit = github.getOctokit(token)
-    const {repo, issue} = github.context
 
     await octokit.rest.issues.createComment({
       owner: repo.owner,
