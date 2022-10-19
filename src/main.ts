@@ -18,18 +18,9 @@ async function run(): Promise<void> {
     const octokit = github.getOctokit(token)
     const {repo, issue} = github.context
 
-    // use the commit sha to get the commit message from octokit
-    const commit = await octokit.rest.repos.getCommit({
-      owner: repo.owner,
-      repo: repo.repo,
-      ref: github.context.sha
-    })
-
-    const commitMessage = commit.data.commit.message
-
     const defaultMessage =
-      `# EAS Update Success\n` +
-      `Commit: ${commitMessage}\n` +
+      `# EAS Update Success\n\n\n\n` +
+      `${JSON.stringify(github.context)}\n\n\n` +
       `${commentTitle}\n` +
       `\n|iOS|Android|` +
       `\n|:-:|:-:|` +
