@@ -51,7 +51,7 @@ function run() {
             const iosQR = expoQRBaseURL + iosBuildID;
             const androidQR = expoQRBaseURL + androidBuildID;
             const defaultMessage = `# EAS Update Success\n` +
-                `Commit: ${github.context.payload.check_suite.head_commit.message}\n` +
+                `Commit: ${JSON.stringify(github.context.payload)}\n` +
                 `${commentTitle}\n` +
                 `\n|iOS|Android|` +
                 `\n|:-:|:-:|` +
