@@ -15,6 +15,9 @@ async function run(): Promise<void> {
     const androidQR = expoQRBaseURL + androidBuildID
 
     const defaultMessage =
+      // Add the commit message to the comment
+      `# EAS Update Success\n` +
+      `Commit: ${github.context.payload.check_suite.head_commit.message}\n` +
       `${commentTitle}\n` +
       `\n|iOS|Android|` +
       `\n|:-:|:-:|` +
