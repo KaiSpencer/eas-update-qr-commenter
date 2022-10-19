@@ -29,8 +29,7 @@ async function run(): Promise<void> {
 
     const defaultMessage =
       `# EAS Update Success\n` +
-      `## Commit Message\n${commitMessage}\n` +
-      `Commit: ${JSON.stringify(github.context.payload)}\n` +
+      `Commit: ${commitMessage}\n` +
       `${commentTitle}\n` +
       `\n|iOS|Android|` +
       `\n|:-:|:-:|` +
