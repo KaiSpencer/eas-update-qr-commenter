@@ -50,7 +50,9 @@ function run() {
             const androidBuildID = core.getInput('android-build-id', { required: true });
             const iosQR = expoQRBaseURL + iosBuildID;
             const androidQR = expoQRBaseURL + androidBuildID;
-            const defaultMessage = `${commentTitle}\n` +
+            const defaultMessage = `# EAS Update Success\n` +
+                `Commit: ${github.context.payload.check_suite.head_commit.message}\n` +
+                `${commentTitle}\n` +
                 `\n|iOS|Android|` +
                 `\n|:-:|:-:|` +
                 `\n|![iOS Build QR](${iosQR})|![Android Build QR](${androidQR})|`;
